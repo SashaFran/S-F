@@ -1,0 +1,238 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabrina & Francisco - Nuestra Boda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid align-items-center">
+    <a class="navbar-brand" href="#">logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse w-100" id="navbarText">
+      <ul class="navbar-nav d-flex w-100 flex-row justify-content-around align-items-center mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#bride-groom">Los Novios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#iglesia">Ceremonia Religiosa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#fiesta">Fiesta & Almuerzo</a>
+        </li>
+      </ul>
+    </div>
+      <a  href="#rsvp" class="nav-link navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">RSVP</a>
+  </div>
+</nav> -->
+
+    <nav class="navbar navbar-dark bg-dark fixed-top bg-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SF</a>
+        <div class="d-lg-none custom-toggler">
+          <a
+            class="menu-text navbar-toggler border-0 text-decoration-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+            aria-expanded="Toggle navigation"
+            aria-label="Toggle navigation"
+            >MENU</a
+          >
+          <a
+            class="rsvp-button navbar-toggler border-0 text-decoration-none"
+            type="button"
+            href="#rsvp"
+            >RSVP</a
+          >
+        </div>
+        <div
+          class="offcanvas offcanvas-end text-bg-dark"
+          tabindex="-1"
+          id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+              Nuestra boda
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="navbar-nav offcanvas-body">
+            <ul class="navbar-nav flex-grow-1 pe-3 text-uppercase">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#home"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#bride-groom">Los Novios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#iglesia">Ceremonia Religiosa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#fiesta">Fiesta & Almuerzo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="#rsvp">RSVP</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero / Bienvenida -->
+    <section
+      class="hero d-flex align-items-center text-center text-white"
+      id="home"
+    >
+      <div class="container">
+        <h1 class="display-3 romantic-font">Sabrina & Francisco</h1>
+        <p class="lead">Nos casamos - 20 de Septiembre 2025</p>
+        <div id="countdown" class="fs-4 my-4"></div>
+        <a href="#rsvp" class="btn btn-light btn-lg">Confirmá tu asistencia</a>
+      </div>
+    </section>
+
+    <!-- The Bride & Groom -->
+    <section class="py-5 text-center" id="bride-groom">
+      <div class="container">
+        <h2 class="mb-4">Nuestra feliz pareja</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="couple__title">Sabrina Franchini</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              vitae.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="couple__title">Francisco Garcia</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              vitae.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ceremonia Religiosa -->
+    <section class="evento py-5 bg-light text-center" id="iglesia">
+      <div class="container">
+        <h2>Ceremonia Religiosa</h2>
+        <p>20 de Septiembre, 10:30 - 13:00 hs</p>
+        <p>Capilla Nuestra Señora del Rosario</p>
+        <p>Pierroni, Walcalde y, Tandil, Buenos Aires</p>
+        <iframe
+          src="https://maps.google.com/maps?q=Capilla%20Nuestra%20Se%C3%B1ora%20del%20Rosario%20Tandil&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Fiesta / Almuerzo -->
+    <section class="evento py-5 text-center" id="fiesta">
+      <div class="container">
+        <h2>Fiesta & Almuerzo</h2>
+        <p>20 de Septiembre, 13:00 - 17:00 hs</p>
+        <p>Chapeaux - Av. Alvear 535, Tandil, Buenos Aires</p>
+        <iframe
+          src="https://maps.google.com/maps?q=Chapeaux%20Tandil&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="300"
+          style="border: 0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+
+    <section class="py-5 text-left bg-white" id="rsvp">
+      <div class="container">
+        <h2 class="">RSVP</h2>
+        <span class="rvsp__subtitle"
+          >Favor de responder antes del 1ero de Septiembre, 2025</span
+        >
+        <form id="rsvp-form" class="mx-auto" style="max-width: 600px">
+          <div class="mb-3">
+            <select
+              name="nombre"
+              id="guest"
+              class="form-label rounded-0 border-start-0 border-top-0 border-end-0 form form-select fs-6"
+              required
+            >
+              <option class="ms-2" value="">
+                Seleccioná tu grupo familiar
+              </option>
+            </select>
+            <span class="rvsp__subtitle">Tu grupo familiar contiene: </span>
+          </div>
+          <div class="mb-3">
+            <label for="comments" class="ms-2 form iputs__group form-label fs-6"
+              >Comentarios:</label
+            >
+            <textarea
+              name="comentario"
+              id="comments"
+              class="rounded-0 border-start-0 border-top-0 border-end-0 form form-control fs-6"
+              rows="2"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark">
+            Confirmar asistencia
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-white py-4 bg-dark">
+      <div class="container">
+        <p class="mb-1">Con amor, Sabrina & Francisco 💕</p>
+        <small>© 2025 Nuestra Boda. No se, que se yo. Nos vemos ahi.</small>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
