@@ -124,37 +124,11 @@ $(document).ready(function () {
   });
 
   //Photo slider
-  var swiper = new Swiper(".swiper-container", {
-    slidesPerView: 4,
-    spaceBetween: 32,
+  var swiper = new Swiper(".photos__swiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
     loop: true,
     centeredSlides: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      300: {
-        slidesPerView: 1,
-        spaceBetween: 32,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 32,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 32,
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 32,
-      },
-      1450: {
-        slidesPerView: 6,
-        spaceBetween: 32,
-      },
-    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -162,22 +136,24 @@ $(document).ready(function () {
     pagination: {
       el: ".swiper-pagination",
       type: "fraction",
+      renderFraction: function (currentClass, totalClass) {
+        return `<span class="${currentClass}"></span> / <span class="${totalClass}"></span>`;
+      },
     },
-
-    renderFraction: function (currentClass, totalClass) {
-      return `<span class="${0 + currentClass} "></span>' +
-                ' / ' +
-                '<span class="${0 + totalClass} "></span>`;
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 32,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      },
+      1440: {
+        slidesPerView: 4,
+        spaceBetween: 32,
+      },
     },
-  });
-
-  $(".swiper-slide-active")
-    .siblings(".swiper-slide")
-    .css("margin-right", "32px");
-
-  $(".swiper-slide-active").css({
-    display: "flex",
-    justifyContent: "center",
   });
 
   //Init map
@@ -274,7 +250,7 @@ $(document).ready(function () {
     }
   })();
 });
-
+/* 
 document.addEventListener("DOMContentLoaded", () => {
   fetch("invitados.csv")
     .then((response) => response.text())
@@ -287,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lines.slice(1).forEach((line) => {
         const values = line.split(",").map((v) => v.trim());
         const grupo = values[0];
-span.textContent = grupo;
+        span.textContent = grupo;
 
         const invitados = values.slice(1);
 
@@ -300,13 +276,12 @@ span.textContent = grupo;
             selectedItem.dataset.nombre = grupo; // guardamos el valor real
             const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
             if (infoGrupo) {
-  infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? 's' : ''}.`;
-}
-const detalle = document.getElementById("detalleGrupo");
-if (detalle) {
-  detalle.textContent = `Tu grupo familiar se compone de: ${total} persona${total > 1 ? 's' : ''}.`;
-}
-
+              infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? "s" : ""}.`;
+            }
+            const detalle = document.getElementById("detalleGrupo");
+            if (detalle) {
+              detalle.textContent = `Tu grupo familiar se compone de: ${total} persona${total > 1 ? "s" : ""}.`;
+            }
           });
           dropdown.appendChild(span);
         }
@@ -315,11 +290,11 @@ if (detalle) {
     .catch((error) => {
       console.error("Error al cargar el CSV:", error);
     });
-});
+}); */
 // === JS COMPLETO ===
 
 // Al cargar la página, llenar el dropdown con datos desde invitados.csv
-
+/* 
 document.addEventListener("DOMContentLoaded", () => {
   fetch("invitados.csv")
     .then((response) => response.text())
@@ -330,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const infoGrupo = document.getElementById("infoGrupo");
 
       lines.slice(1).forEach((line) => {
-        const values = line.split(",").map(v => v.trim());
+        const values = line.split(",").map((v) => v.trim());
         const grupo = values[0];
         const invitados = values.slice(1);
 
@@ -343,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedItem.dataset.nombre = grupo; // guardamos el valor real
             const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
             if (infoGrupo) {
-              infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? 's' : ''}.`;
+              infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? "s" : ""}.`;
             }
           });
           dropdown.appendChild(span);
@@ -353,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch((error) => {
       console.error("Error al cargar el CSV:", error);
     });
-});
+}); */
 
 // Envío del formulario con campos nuevos
 
@@ -380,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedItem.dataset.nombre = grupo; // guardamos el valor real
             const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
             if (infoGrupo) {
-              infoGrupo.innerHTML = `<p class="grupo-info">Tu grupo familiar se compone de: <strong>${total}</strong> invitado${total > 1 ? 's' : ''}.</p>`;
+              infoGrupo.innerHTML = `<p class="grupo-info">Tu grupo familiar se compone de: <strong>${total}</strong> invitado${total > 1 ? "s" : ""}.</p>`;
             }
           });
           dropdown.appendChild(span);
@@ -407,19 +382,22 @@ document.querySelector(".rvsp__form").addEventListener("submit", function (e) {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbxV87lQHEPcodHPhRGh0Ff4b9yTP-lbbYxbCSec8es9jmP6wCHSiaSBA5ODXQWnv5KEBA/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+  fetch(
+    "https://script.google.com/macros/s/AKfycbxV87lQHEPcodHPhRGh0Ff4b9yTP-lbbYxbCSec8es9jmP6wCHSiaSBA5ODXQWnv5KEBA/exec",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+
+      body: new URLSearchParams({
+        nombre,
+        gfamiliar,
+        dieta,
+        comentario,
+      }),
     },
-    
-    body: new URLSearchParams({
-      nombre,
-      gfamiliar,
-      dieta,
-      comentario
-    })
-  })
+  )
     .then((response) => response.text())
     .then((text) => {
       if (text === "OK") {
