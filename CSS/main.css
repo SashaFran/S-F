@@ -309,7 +309,7 @@ strong {
 }
 
 a:hover {
-  color: var(--color-dark-brown);
+  color: var(--color-old-pink);
   -webkit-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -347,17 +347,17 @@ a:hover {
   background-color: #fff;
 }
 .btn:hover {
-  background-color: #402657;
+  background-color: var(--color-old-pink);
   color: #fff;
 }
 .btn:active {
-  background-color: #402657;
+  background-color: var(--color-old-pink);
   color: #fff;
 }
 .btn:focus {
   background-color: var(--color-dark-brown);
   color: #fff;
-  border: 2px solid #f5a8a8;
+  border: 2px solid var(--color-old-pink);
   color: #fff;
 }
 .btn:disabled {
@@ -378,7 +378,7 @@ a:hover {
 .open > .btn.dropdown-toggle,
 .open > .dropdown-toggle.custom-file-control:before {
   color: #fff !important;
-  background-color: #402657 !important;
+  background-color: var(--color-old-pink)!important;
 }
 
 .mobile-menu {
@@ -502,12 +502,12 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: #402657;
+  background-color: var(--color-old-pink)!important;
   opacity: 0.8;
 }
 
 .btn:active {
-  background-color: #402657;
+  background-color: var(--color-old-pink)!important;
 }
 
 .btn:focus {
