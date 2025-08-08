@@ -75,48 +75,46 @@ $(document).ready(function () {
 
   //Dropdown
   (function selectDropdown() {
-    const openBtn = $(".select--clicked");
-    const dropdown = $(".select-dropdown");
-    const label = $(".select__label");
-    const span = $(".dropdown__select");
+  const openBtn = $(".select--clicked");
+  const dropdown = $(".select-dropdown");
+  const label = $(".select__label");
+  const span = $(".dropdown__select");
 
-    span.on("click", function () {
-      if ($(window).width() <= 1000) {
-        label.animate({
-          position: "absolute",
-          top: "-14px",
-          fontSize: "12px",
-          lightHeight: "16px",
-          opacity: "0.7",
-        });
-      } else {
-        label.animate({
-          position: "absolute",
-          top: "16px",
-          fontSize: "12px",
-          lightHeight: "16px",
-          opacity: "0.7",
-        });
-      }
+  span.on("click", function () {
+    if ($(window).width() <= 1000) {
+      label.animate({
+        position: "absolute",
+        lightHeight: "16px",
+      });
+    } else {
+      label.animate({
+        position: "absolute",
+        lightHeight: "16px",
+      });
+    }
 
-      $(".selected__item").html($(this).text());
-    });
-
-    openBtn.on("click", function () {
-      dropdown.slideToggle("200");
-    });
-  })();
-
-  $("body").bootstrapMaterialDesign();
-
-  //Story slider
-  $(".story__slider").slick({
-    infinite: true,
-    prevArrow:
-      '<button type="button" class="slick-prev arrow-left--colored"></button>',
-    nextArrow:
-      '<button type="button" class="slick-next arrow-right--colored"></button>',
+    $(".selected__item").html($(this).text());
   });
+
+  openBtn.on("click", function (e) {
+    e.stopPropagation(); // Para que el click en el botón no se propague al document
+    dropdown.slideToggle(200);
+  });
+
+  // Aquí viene el cierre mágico cuando clickeas afuera
+  $(document).on("click", function (e) {
+    // Si el click no está dentro del dropdown ni el botón, lo cerramos
+    if (
+      !dropdown.is(e.target) &&
+      dropdown.has(e.target).length === 0 &&
+      !openBtn.is(e.target)
+    ) {
+      if (dropdown.is(":visible")) {
+        dropdown.slideUp(200);
+      }
+    }
+  });
+})();
 
   //Fancybox
   $(".fancy").fancybox({
@@ -250,85 +248,6 @@ $(document).ready(function () {
     }
   })();
 });
-/* 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("invitados.csv")
-    .then((response) => response.text())
-    .then((csvText) => {
-      const lines = csvText.trim().split("\n");
-      const dropdown = document.getElementById("invitadoSelect");
-      const selectedItem = document.getElementById("gfamiliarr");
-      const infoGrupo = document.getElementById("infoGrupo");
-
-      lines.slice(1).forEach((line) => {
-        const values = line.split(",").map((v) => v.trim());
-        const grupo = values[0];
-        span.textContent = grupo;
-
-        const invitados = values.slice(1);
-
-        if (grupo) {
-          const span = document.createElement("span");
-          span.classList.add("dropdown-item");
-          span.textContent = grupo;
-          span.addEventListener("click", () => {
-            selectedItem.textContent = grupo;
-            selectedItem.dataset.nombre = grupo; // guardamos el valor real
-            const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
-            if (infoGrupo) {
-              infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? "s" : ""}.`;
-            }
-            const detalle = document.getElementById("detalleGrupo");
-            if (detalle) {
-              detalle.textContent = `Tu grupo familiar se compone de: ${total} persona${total > 1 ? "s" : ""}.`;
-            }
-          });
-          dropdown.appendChild(span);
-        }
-      });
-    })
-    .catch((error) => {
-      console.error("Error al cargar el CSV:", error);
-    });
-}); */
-// === JS COMPLETO ===
-
-// Al cargar la página, llenar el dropdown con datos desde invitados.csv
-/* 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("invitados.csv")
-    .then((response) => response.text())
-    .then((csvText) => {
-      const lines = csvText.trim().split("\n");
-      const dropdown = document.getElementById("invitadoSelect");
-      const selectedItem = document.getElementById("gfamiliarr");
-      const infoGrupo = document.getElementById("infoGrupo");
-
-      lines.slice(1).forEach((line) => {
-        const values = line.split(",").map((v) => v.trim());
-        const grupo = values[0];
-        const invitados = values.slice(1);
-
-        if (grupo) {
-          const span = document.createElement("span");
-          span.classList.add("dropdown-item");
-          span.textContent = grupo;
-          span.addEventListener("click", () => {
-            selectedItem.textContent = grupo;
-            selectedItem.dataset.nombre = grupo; // guardamos el valor real
-            const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
-            if (infoGrupo) {
-              infoGrupo.textContent = `Tu grupo familiar tiene: ${total} invitado${total > 1 ? "s" : ""}.`;
-            }
-          });
-          dropdown.appendChild(span);
-        }
-      });
-    })
-    .catch((error) => {
-      console.error("Error al cargar el CSV:", error);
-    });
-}); */
 
 // Envío del formulario con campos nuevos
 
@@ -355,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedItem.dataset.nombre = grupo; // guardamos el valor real
             const total = invitados.filter(Boolean).length + 1; // sumamos al grupo principal
             if (infoGrupo) {
-              infoGrupo.innerHTML = `<p class="grupo-info">Tu grupo familiar se compone de: <strong>${total}</strong> invitado${total > 1 ? "s" : ""}.</p>`;
+              infoGrupo.innerHTML = `<p class="grupo-info"><strong>${total}</strong> invitado${total > 1 ? "s" : ""}.</p>`;
             }
           });
           dropdown.appendChild(span);
@@ -406,6 +325,82 @@ document.querySelector(".rvsp__form").addEventListener("submit", function (e) {
         document.getElementById("gfamiliarr").textContent = "";
         delete document.getElementById("gfamiliarr").dataset.nombre;
         document.getElementById("infoGrupo").innerHTML = "";
+      } else {
+        alert("Algo falló 😢. Por favor, intentá de nuevo más tarde.");
+      }
+    })
+    .catch((err) => {
+      console.error("Error al enviar:", err);
+      alert("Ocurrió un error inesperado 😓. Reintentá en un ratito.");
+    });
+});
+
+
+const offcanvas = document.getElementById("offcanvasDarkNavbar");
+
+offcanvas.addEventListener("show.bs.offcanvas", () => {
+  document.body.classList.add("offcanvas-open");
+});
+
+offcanvas.addEventListener("hidden.bs.offcanvas", () => {
+  document.body.classList.remove("offcanvas-open");
+});
+
+
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([data.nombre, data.comentario, new Date()]);
+  return ContentService.createTextOutput("OK").setMimeType(
+    ContentService.MimeType.TEXT,
+  );
+}
+
+fetch("invitados.csv")
+  .then((response) => response.text())
+  .then((text) => {
+    const lines = text.trim().split("\n").slice(1);
+    const select = document.getElementById("guest");
+    select.innerHTML = '<option value="">Seleccioná un grupo familiar</option>';
+    lines.forEach((nombre) => {
+      const option = document.createElement("option");
+      option.value = nombre.trim();
+      option.textContent = nombre.trim();
+      select.appendChild(option);
+    });
+  });
+
+// Enviar formulario sin recargar
+document.getElementById("rsvp-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("guest").value;
+  const comentario = document.getElementById("comments").value;
+
+  if (!nombre) {
+    alert("Por favor, seleccioná un grupo familiar.");
+    return;
+  }
+
+  fetch(
+    "https://script.google.com/macros/s/AKfycbzaH5dP_vKzazWHLjXsH8G3k6vBNtM8Sdi-jC4DYoTfaYnfdDMpR4KcZj7MNtK2-HfpXQ/exec",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        nombre,
+        comentario,
+      }),
+    },
+  )
+    .then((response) => response.text())
+    .then((text) => {
+      if (text === "OK") {
+        alert("¡Gracias por confirmar! Nos hace muy felices 😍");
+        e.target.reset();
       } else {
         alert("Algo falló 😢. Por favor, intentá de nuevo más tarde.");
       }
